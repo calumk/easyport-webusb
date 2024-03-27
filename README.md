@@ -2,9 +2,11 @@
 
 A WebUSB implementation of the EasyPort protocol
 
-**CHROME ONLY**
 
-The site is hosted on vercel at https://easyport-webusb.vercel.app/
+> [!IMPORTANT]
+> **CHROME ONLY**
+
+The site is hosted on vercel at --> https://easyport-webusb.vercel.app/
 
 
 ---
