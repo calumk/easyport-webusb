@@ -2,14 +2,20 @@
 
 A WebUSB implementation of the EasyPort protocol
 
-Some information on a related project is here : https://dev.to/calumk/festo-didactic-easyport-nodejs-using-ftdi-d2xx-2bod
+**CHROME ONLY**
+
+The site is hosted on vercel at https://easyport-webusb.vercel.app/
 
 
-The index.html is hosted on vercel at https://easyport-webusb.vercel.app/
-
+---
 
 > [!WARNING]
-A VERY buggyy and incomplete implementation of the EasyPort protocol for WebUSB. This is a work in progress and should not be used in production.
+This is a **A VERY BUGGY** and **incomplete** implementation of the EasyPort protocol for WebUSB. This is a work in progress and should not be used in production.
+
+## Usage
+
+The EasyPort class is a wrapper around the WebUSB API. It is used to connect to a device and send and receive data.
+
 
 
 ```js
@@ -23,3 +29,11 @@ easyport.writeString('MA1.0.0=1');
 
 // Read the response which should be 8 bytes
 let response = await easyport.readString(8);
+```
+
+
+## Development
+
+This is a standalone index.js and index.html file that can be run locally.
+
+No drivers should be needed for this to work.
