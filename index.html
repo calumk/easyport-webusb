@@ -1,9 +1,15 @@
-<html>
+<html data-theme="light">
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>WebUSB Easyport Sample Application</title>
+    <link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
+/>
   </head>
 
   <body>
+    <main class="container">
   
     <h1> @calumk/easyport-webusb </h1>
     <h2> EasyPort WebUSB Sample App</h2>
@@ -30,7 +36,7 @@
       <h2> Outputs </h2>
       <div id="outputs"></div>
     </div>
-
+  </main>
   </body>
 
   <script type="module">
@@ -54,20 +60,20 @@
         inputs_element.innerHTML = "";
         outputs_element.innerHTML = "";
 
-        let container1 = document.createElement("div");
-        let container2 = document.createElement("div");
+        let container1 = document.createElement("article");
+        let container2 = document.createElement("article");
 
-        let container3 = document.createElement("div");
-        let container4 = document.createElement("div");
-
-        // add a small border and some padding
-        container1.style = "border: 1px solid grey; padding: 10px; margin: 10px;";
-        container2.style = "border: 1px solid grey; padding: 10px; margin: 10px;";
-
+        let container3 = document.createElement("article");
+        let container4 = document.createElement("article");
 
         // add a small border and some padding
-        container3.style = "border: 1px solid grey; padding: 10px; margin: 10px;";
-        container4.style = "border: 1px solid grey; padding: 10px; margin: 10px;";
+        // container1.style = "border: 1px solid grey; padding: 10px; margin: 10px;";
+        // container2.style = "border: 1px solid grey; padding: 10px; margin: 10px;";
+
+
+        // // add a small border and some padding
+        // container3.style = "border: 1px solid grey; padding: 10px; margin: 10px;";
+        // container4.style = "border: 1px solid grey; padding: 10px; margin: 10px;";
 
         
 
