@@ -151,11 +151,11 @@
       
       
     }
-    document.querySelector("#send2").onclick = async function() {
-      await easyport.writeString("MA1.0.0=1");
-      let result = await easyport.readString(5);
-      console.log("result: ", result);
-    }
+    // document.querySelector("#send2").onclick = async function() {
+    //   await easyport.writeString("MA1.0.0=1");
+    //   let result = await easyport.readString(5);
+    //   console.log("result: ", result);
+    // }
 
     document.querySelector("#monitor2").onclick = async function() {
       easyport.simpleMonitorMode();
