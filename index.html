@@ -7,6 +7,11 @@
   href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css"
 />
   </head>
+  <style>
+    html{
+      font-size: 15px;
+    }
+  </style>
 
   <body>
     <main class="container">
@@ -22,6 +27,10 @@
       <li> You can also click the "Update PLC Output Number" button to update the PLC output number. </li>
     </ul>
 
+    <article style="background-color: plum; font-size: 12px; padding: 10px;;">
+      Remember to Check the Console for debug messages
+    </article>
+
     <!-- <button id="connect" style="visibility: initial">Connect To WebUSB Device</button> -->
 
     <button id="connect2" style="visibility: initial">Connect To WebUSB Device</button>
@@ -29,6 +38,8 @@
     <button id="monitor2" style="display: none">Monitor</button>
     <button id="uopdateplcoutput" style="display: none">Update PLC Output Number</button>
 
+    <br/>
+    <br/>
     <div id="iowrapper" style="display: none">
       <h2> Inputs </h2>
       <div id="inputs"></div>
