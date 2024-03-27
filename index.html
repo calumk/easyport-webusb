@@ -1,0 +1,161 @@
+<html>
+  <head>
+    <title>WebUSB Easyport Sample Application</title>
+  </head>
+
+  <body>
+    HelloWorld
+
+    <!-- <button id="connect" style="visibility: initial">Connect To WebUSB Device</button> -->
+
+    <button id="connect2" style="visibility: initial">Connect To WebUSB Device 2</button>
+    <button id="send2" style="visibility: initial">Send 2</button>
+    <button id="monitor2" style="visibility: initial">Monitor</button>
+    <button id="uopdateplcoutput" style="visibility: initial">Update PLC Output</button>
+
+    <h2> Inputs </h2>
+    <div id="inputs"></div>
+
+    <h2> Outputs </h2>
+    <div id="outputs"></div>
+
+  </body>
+
+  <script type="module">
+    import { EasyPort } from './index.js';
+    let easyport = new EasyPort();
+
+
+    easyport.registerNewMonitoringModeListener((data) => {
+        let BitInputArray = [];
+        let BitOutputArray = [];
+        for(let i = 0; i < 16; ++i){
+          BitInputArray[i] = (easyport.plc.inputs >> i) & 1;
+        }
+        for(let i = 0; i < 16; ++i){
+          BitOutputArray[i] = (easyport.plc.outputs >> i) & 1;
+        }
+
+        let inputs_element = document.querySelector("#inputs");
+        let outputs_element = document.querySelector("#outputs");
+        // clear the inputs element
+        inputs_element.innerHTML = "";
+        outputs_element.innerHTML = "";
+
+        let container1 = document.createElement("div");
+        let container2 = document.createElement("div");
+
+        let container3 = document.createElement("div");
+        let container4 = document.createElement("div");
+
+        // add a small border and some padding
+        container1.style = "border: 1px solid grey; padding: 10px; margin: 10px;";
+        container2.style = "border: 1px solid grey; padding: 10px; margin: 10px;";
+
+
+        // add a small border and some padding
+        container3.style = "border: 1px solid grey; padding: 10px; margin: 10px;";
+        container4.style = "border: 1px solid grey; padding: 10px; margin: 10px;";
+
+        
+
+        // add two titles to the inputs element, port 1 and port 2, respectively
+        let title1 = document.createElement("h3");
+        title1.innerHTML = "Port 1";
+        let title2 = document.createElement("h3");
+        title2.innerHTML = "Port 2";
+        container1.appendChild(title1);
+        container2.appendChild(title2);
+
+        // add two titles to the outputs element, port 1 and port 2, respectively
+        let title3 = document.createElement("h3");
+        title3.innerHTML = "Port 1";
+        let title4 = document.createElement("h3");
+        title4.innerHTML = "Port 2";
+        container3.appendChild(title3);
+        container4.appendChild(title4);
+
+
+
+        // add the inputs to the inputs element
+        for(let i = 0; i < 8; ++i){
+          let input = document.createElement("input");
+          input.type = "checkbox";
+          input.checked = BitInputArray[i];
+          input.disabled = true;
+          container1.appendChild(input);
+        }
+        for(let i = 8; i < 16; ++i){
+          let input = document.createElement("input");
+          input.type = "checkbox";
+          input.checked = BitInputArray[i];
+          input.disabled = true;
+          container2.appendChild(input);
+        }
+
+        inputs_element.appendChild(container1);
+        inputs_element.appendChild(container2);
+
+
+
+
+
+        // add the inputs to the inputs element
+        for(let i = 0; i < 8; ++i){
+          let input = document.createElement("input");
+          input.type = "checkbox";
+          input.checked = BitOutputArray[i];
+          input.disabled = true;
+          container3.appendChild(input);
+        }
+        for(let i = 8; i < 16; ++i){
+          let input = document.createElement("input");
+          input.type = "checkbox";
+          input.checked = BitOutputArray[i];
+          input.disabled = true;
+          container4.appendChild(input);
+        }
+
+        inputs_element.appendChild(container3);
+        inputs_element.appendChild(container4);
+        outputs_element.appendChild(container3);
+        outputs_element.appendChild(container4);
+
+
+
+    });
+
+
+    let interval = null;
+
+    document.querySelector("#connect2").onclick = async function() {
+      await easyport.chooseDevice();
+      await easyport.openDevice();
+      
+    }
+    document.querySelector("#send2").onclick = async function() {
+      await easyport.writeString("MA1.0.0=1");
+      let result = await easyport.readString(5);
+      console.log("result: ", result);
+    }
+
+    document.querySelector("#monitor2").onclick = async function() {
+      easyport.simpleMonitorMode();
+    }
+
+    document.querySelector("#uopdateplcoutput").onclick = async function() {
+      // ask the user for an input and send it to the PLC
+      let input = prompt("Please enter the input to send to the PLC");
+      easyport.plc.outputs = parseInt(input);
+    }
+    
+
+
+    
+
+    
+
+  </script> 
+
+
+</html>
